@@ -59,11 +59,11 @@ def _resolve_git(extension: Extension) -> ResolvedExtension:
         repo.git.checkout(default_branch)
         repo.remotes.origin.pull()
 
-    ext_path = cache / "extensions" / extension.name
+    ext_path = cache / extension.name
     if not ext_path.exists():
         available = sorted(
-            p.name for p in (cache / "extensions").iterdir() if p.is_dir()
-        ) if (cache / "extensions").exists() else []
+            p.name for p in cache.iterdir() if p.is_dir()
+        ) if cache.exists() else []
         avail_str = "\n    ".join(available) if available else "(none)"
         raise ValueError(
             f"Extension '{extension.name}' not found in {repo_url}.\n"

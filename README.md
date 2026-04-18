@@ -1,5 +1,7 @@
 # protomerge
 
+[![Tests](https://github.com/sorokya/protomerge/actions/workflows/tests.yml/badge.svg)](https://github.com/sorokya/protomerge/actions/workflows/tests.yml)
+
 A CLI tool for merging [eo-protocol](https://github.com/Cirras/eo-protocol) extensions and
 outputting extended protocol XML files ready to use with any eolib code generator.
 
@@ -64,7 +66,7 @@ Create an `extensions.xml` file in your project to declare which extensions to a
 
 ```xml
 <extensions>
-  <!-- Official registry extension (git, default repo) -->
+  <!-- Official registry extension (git, https://github.com/sorokya/eo-protocol-extensions) -->
   <extension type="git" name="deep"/>
 
   <!-- Extension from a custom repository -->
