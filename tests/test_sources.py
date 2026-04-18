@@ -1,8 +1,8 @@
 import pytest
 from pathlib import Path
 
-from protomerge.models import Extension
-from protomerge.sources import resolve, resolve_extension_files
+from eo_proto_merge.models import Extension
+from eo_proto_merge.sources import resolve, resolve_extension_files
 
 
 class TestFileSource:
@@ -45,7 +45,7 @@ class TestFileSource:
 class TestResolveExtensionFiles:
     def test_finds_root_protocol_xml(self, tmp_path):
         (tmp_path / "protocol.xml").write_text("<protocol/>")
-        from protomerge.models import ResolvedExtension
+        from eo_proto_merge.models import ResolvedExtension
         resolved = ResolvedExtension(name="test", local_path=str(tmp_path))
         files = resolve_extension_files(resolved)
         assert tmp_path / "protocol.xml" in files
@@ -55,13 +55,13 @@ class TestResolveExtensionFiles:
         sub = tmp_path / "net" / "client"
         sub.mkdir(parents=True)
         (sub / "protocol.xml").write_text("<protocol/>")
-        from protomerge.models import ResolvedExtension
+        from eo_proto_merge.models import ResolvedExtension
         resolved = ResolvedExtension(name="test", local_path=str(tmp_path))
         files = resolve_extension_files(resolved)
         assert files[0] == tmp_path / "protocol.xml"
 
     def test_returns_empty_for_empty_directory(self, tmp_path):
-        from protomerge.models import ResolvedExtension
+        from eo_proto_merge.models import ResolvedExtension
         resolved = ResolvedExtension(name="test", local_path=str(tmp_path))
         files = resolve_extension_files(resolved)
         assert files == []

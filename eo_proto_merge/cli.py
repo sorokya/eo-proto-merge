@@ -20,7 +20,7 @@ from .models import Extension
 from .sources import OFFICIAL_REPO, resolve, resolve_extension_files, fetch_base_protocol
 
 app = typer.Typer(
-    name="protomerge",
+    name="eo-proto-merge",
     help="Apply protocol extensions and output extended protocol XML.",
     add_completion=False,
 )
@@ -101,7 +101,7 @@ def apply(
 ):
     """Fetch extensions, merge XML, and output extended protocol files."""
 
-    console.rule("[bold]protomerge[/bold]")
+    console.rule("[bold]eo-proto-merge[/bold]")
 
     output_dir = output or Path("./eo-protocol")
     config_dir = config.parent.resolve()

@@ -1,6 +1,6 @@
-# protomerge
+# eo-proto-merge
 
-[![Tests](https://github.com/sorokya/protomerge/actions/workflows/tests.yml/badge.svg)](https://github.com/sorokya/protomerge/actions/workflows/tests.yml)
+[![Tests](https://github.com/sorokya/eo-proto-merge/actions/workflows/tests.yml/badge.svg)](https://github.com/sorokya/eo-proto-merge/actions/workflows/tests.yml)
 
 A CLI tool for merging [eo-protocol](https://github.com/Cirras/eo-protocol) extensions and
 outputting extended protocol XML files ready to use with any eolib code generator.
@@ -10,7 +10,7 @@ outputting extended protocol XML files ready to use with any eolib code generato
 ## Installation
 
 ```bash
-pip install protomerge
+pip install eo-proto-merge
 ```
 
 Requires Python 3.9+.
@@ -21,19 +21,19 @@ Requires Python 3.9+.
 
 | Command | Description |
 |---|---|
-| `protomerge apply` | Fetch extensions, merge XML, and write extended protocol files |
-| `protomerge validate` | Dry-run merge to check for conflicts without writing any files |
+| `eo-proto-merge apply` | Fetch extensions, merge XML, and write extended protocol files |
+| `eo-proto-merge validate` | Dry-run merge to check for conflicts without writing any files |
 
 ---
 
-## `protomerge apply`
+## `eo-proto-merge apply`
 
 Reads an `extensions.xml` config, fetches extension sources, merges the XML into the base
 [eo-protocol](https://github.com/Cirras/eo-protocol) files, and writes the result to an
 output directory.
 
 ```bash
-protomerge apply --config=extensions.xml --output=./eo-protocol
+eo-proto-merge apply --config=extensions.xml --output=./eo-protocol
 ```
 
 **Options:**
@@ -48,14 +48,14 @@ to any eolib code generator.
 
 ---
 
-## `protomerge validate`
+## `eo-proto-merge validate`
 
 Fetches the base `eo-protocol` and all extensions to the local cache, then performs a
 dry-run merge to check for conflicts — without writing any output files.
 Useful for catching merge errors during extension development or in CI.
 
 ```bash
-protomerge validate --config=extensions.xml
+eo-proto-merge validate --config=extensions.xml
 ```
 
 ---

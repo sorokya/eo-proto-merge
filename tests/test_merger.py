@@ -4,7 +4,7 @@ import pytest
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from protomerge.merger import merge_protocol_file, load_base_elements, MergeError
+from eo_proto_merge.merger import merge_protocol_file, load_base_elements, MergeError
 
 FIXTURES = Path(__file__).parent / "fixtures"
 BASE_FILES = [FIXTURES / "base" / "protocol.xml"]
