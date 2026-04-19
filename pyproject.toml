@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=80", "setuptools-scm[simple]>=9.2", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "eo-proto-merge"
-version = "0.1.0"
+dynamic = ["version"]
 description = "CLI tool for merging eo-protocol extensions and generating extended protocol XML"
 authors = [{ name = "Richard Leek", email = "richard@richardleek.com" }]
 readme = "README.md"
