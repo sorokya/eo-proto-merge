@@ -97,13 +97,13 @@ def _write_protocol_xml(output_file: Path, elements: list[ET.Element]) -> None:
 @app.command()
 def apply(
     config: Path = typer.Option(Path("extensions.xml"), "--config", "-c", help="Path to extensions.xml"),
-    output: Optional[Path] = typer.Option(None, "--output", "-o", help="Output directory (default: ./eo-protocol)"),
+    output: Optional[Path] = typer.Option(None, "--output", "-o", help="Output directory (default: ./eo-protocol/xml)"),
 ):
     """Fetch extensions, merge XML, and output extended protocol files."""
 
     console.rule("[bold]eo-proto-merge[/bold]")
 
-    output_dir = output or Path("./eo-protocol")
+    output_dir = output or Path("./eo-protocol/xml")
     config_dir = config.parent.resolve()
 
     console.print(f"  [dim]Config[/dim]     {config}")

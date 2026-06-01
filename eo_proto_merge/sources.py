@@ -55,8 +55,17 @@ def _resolve_git(extension: Extension) -> ResolvedExtension:
     if extension.ref:
         repo.git.checkout(extension.ref)
     else:
-        default_branch = repo.remotes.origin.refs[0].remote_head
-        repo.git.checkout(default_branch)
+        try:
+            symbolic_ref = repo.git.symbolic_ref("refs/remotes/origin/HEAD")
+            local_branch = symbolic_ref.rsplit("/", 1)[-1]
+        except git.GitCommandError:
+            for ref in repo.remotes.origin.refs:
+                if not ref.name.endswith("/HEAD"):
+                    local_branch = ref.remote_head.split("/", 1)[1]
+                    break
+            else:
+                raise ValueError(f"No branches found in {repo_url}")
+        repo.git.checkout(local_branch)
         repo.remotes.origin.pull()
 
     ext_path = cache / extension.name
@@ -101,8 +110,17 @@ def fetch_base_protocol() -> tuple[Path, list[Path]]:
     if cache.exists():
         repo = git.Repo(cache)
         repo.remotes.origin.fetch()
-        default_branch = repo.remotes.origin.refs[0].remote_head
-        repo.git.checkout(default_branch)
+        try:
+            symbolic_ref = repo.git.symbolic_ref("refs/remotes/origin/HEAD")
+            local_branch = symbolic_ref.rsplit("/", 1)[-1]
+        except git.GitCommandError:
+            for ref in repo.remotes.origin.refs:
+                if not ref.name.endswith("/HEAD"):
+                    local_branch = ref.remote_head.split("/", 1)[1]
+                    break
+            else:
+                raise ValueError("No branches found in base protocol repo")
+        repo.git.checkout(local_branch)
         repo.remotes.origin.pull()
     else:
         cache.parent.mkdir(parents=True, exist_ok=True)

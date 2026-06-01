@@ -33,7 +33,7 @@ Reads an `extensions.xml` config, fetches extension sources, merges the XML into
 output directory.
 
 ```bash
-eo-proto-merge apply --config=extensions.xml --output=./eo-protocol
+eo-proto-merge apply --config=extensions.xml
 ```
 
 **Options:**
@@ -41,10 +41,10 @@ eo-proto-merge apply --config=extensions.xml --output=./eo-protocol
 | Flag | Default | Description |
 |---|---|---|
 | `--config` | `extensions.xml` | Path to your `extensions.xml` file |
-| `--output` | `./eo-protocol` | Output directory for the merged protocol XML files |
+| `--output` | `./eo-protocol/xml` | Output directory for the merged protocol XML files |
 
-The output directory mirrors the structure of `eo-protocol/xml/` and can be passed directly
-to any eolib code generator.
+The output directory mirrors the structure of the upstream `eo-protocol/xml/` repo and can be
+passed directly to any eolib code generator.
 
 ---
 
